@@ -23,9 +23,9 @@ model Restaurant {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  menuCategory MenuCategory[]
-  products     Product[]
-  order        Order[]
+  menuCategories MenuCategory[]
+  products       Product[]
+  order          Order[]
 }
 
 model MenuCategory {
