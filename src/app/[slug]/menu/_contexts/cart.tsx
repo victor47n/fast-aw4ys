@@ -27,18 +27,20 @@ export default function CartProvider({ children }: { children: ReactNode }) {
   const toggleCart = () => setIsOpen((prev) => !prev);
 
   const addProduct = (product: CartProduct) => {
-    const productIndex = products.findIndex((p) => p.id === product.id);
-    if (productIndex === -1) {
-      setProducts((prev) => [...prev, { ...product, quantity: product.quantity }]);
-    } else {
-      setProducts((prev) => {
-        return prev.map((p, index) =>
-          index === productIndex
-            ? { ...p, quantity: p.quantity + product.quantity }
-            : p
-        );
-      });
+    const productIsAlreadyOnTheCart = products.some((p) => p.id === product.id);
+
+    if (!productIsAlreadyOnTheCart) {
+      setProducts((prev) => [...prev, product]);
+      return;
     }
+    
+    setProducts((prev) => {
+      return prev.map(prevProduct =>
+        prevProduct.id === product.id
+          ? { ...prevProduct, quantity: prevProduct.quantity + product.quantity }
+          : prevProduct
+      );
+    });
   };
 
   return (
