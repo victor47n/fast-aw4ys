@@ -12,13 +12,17 @@ export interface ICartContext {
   products: CartProduct[];
   toggleCart: () => void;
   addProduct: (product: CartProduct) => void;
+  increaseProductQuantity: (productId: string) => void;
+  decreaseProductQuantity: (productId: string) => void;
 }
 
 export const CartContext = createContext<ICartContext>({
   isOpen: false,
   products: [],
   toggleCart: () => {},
-  addProduct: () => {}
+  addProduct: () => {},
+  increaseProductQuantity: () => {},
+  decreaseProductQuantity: () => {}
 });
 
 export default function CartProvider({ children }: { children: ReactNode }) {
@@ -30,16 +34,39 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     const productIsAlreadyOnTheCart = products.some((p) => p.id === product.id);
 
     if (!productIsAlreadyOnTheCart) {
-      setProducts((prev) => [...prev, product]);
+      setProducts((prevProduct) => [...prevProduct, product]);
       return;
     }
     
-    setProducts((prev) => {
-      return prev.map(prevProduct =>
+    setProducts((prevProducts) => {
+      return prevProducts.map(prevProduct =>
         prevProduct.id === product.id
           ? { ...prevProduct, quantity: prevProduct.quantity + product.quantity }
           : prevProduct
       );
+    });
+  };
+
+  const increaseProductQuantity = (productId: string) => {
+    setProducts((prevProducts) => {
+      return prevProducts.map((prevProduct) => {
+        if (prevProduct.id !== productId) {
+          return prevProduct;
+        }
+        return { ...prevProduct, quantity: prevProduct.quantity + 1 };
+      });
+    });
+  };
+
+  const decreaseProductQuantity = (productId: string) => {
+    setProducts((prevProducts) => {
+      return prevProducts.map(prevProduct => {
+        if(prevProduct.id !== productId) return prevProduct;
+
+        if(prevProduct.quantity === 1) return prevProduct;
+
+        return { ...prevProduct, quantity: prevProduct.quantity - 1 };
+    });
     });
   };
 
@@ -49,7 +76,9 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         isOpen,
         products,
         toggleCart,
-        addProduct
+        addProduct,
+        increaseProductQuantity,
+        decreaseProductQuantity
       }}
     >
       {children}
