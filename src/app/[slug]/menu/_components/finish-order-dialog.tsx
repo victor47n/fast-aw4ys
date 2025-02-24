@@ -90,8 +90,8 @@ export default function FinishOrderDialog({
 
         onOpenChange(false);
 
-        toast.success("Pedido finalizado com sucesso!")
-      })
+        toast.success("Pedido finalizado com sucesso!");
+      });
     } catch (error) {
       console.error(error);
     }
@@ -150,7 +150,11 @@ export default function FinishOrderDialog({
                   className="rounded-full"
                   disabled={isPending}
                 >
-                  {isPending ? <Loader2Icon className="animate-spin"/> : "Finalizar"}
+                  {isPending ? (
+                    <Loader2Icon className="animate-spin" />
+                  ) : (
+                    "Finalizar"
+                  )}
                 </Button>
                 <DrawerClose asChild>
                   <Button variant="ghost" className="w-full rounded-full">
