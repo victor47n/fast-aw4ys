@@ -7,7 +7,6 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/_components/ui/sheet";
 import { formatCurrency } from "@/_utils/formatCurrency";
 
@@ -24,7 +23,6 @@ export default function CartSheet() {
 
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
-      <SheetTrigger>Open</SheetTrigger>
       <SheetContent className="w-[80%]">
         <SheetHeader>
           <SheetTitle className="text-left">Sacola</SheetTitle>
