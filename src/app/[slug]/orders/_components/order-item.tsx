@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { Card, CardContent } from "@/_components/ui/card";
 import { Separator } from "@/_components/ui/separator";
-import { formatCurrency } from "@/_utils/formatCurrency";
+import { formatCurrency } from "@/_helpers/formatCurrency";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useContext } from "react";
 
 import { Button } from "@/_components/ui/button";
-import { formatCurrency } from "@/_utils/formatCurrency";
+import { formatCurrency } from "@/_helpers/formatCurrency";
 
 import { CartContext, type CartProduct } from "../_contexts/cart";
 

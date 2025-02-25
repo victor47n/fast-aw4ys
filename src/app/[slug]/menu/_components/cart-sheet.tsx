@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/_components/ui/sheet";
-import { formatCurrency } from "@/_utils/formatCurrency";
+import { formatCurrency } from "@/_helpers/formatCurrency";
 
 import { CartContext } from "../_contexts/cart";
 import CartProductItem from "./cart-product-item";

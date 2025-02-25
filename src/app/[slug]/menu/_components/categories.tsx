@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 
 import { Button } from "@/_components/ui/button";
 import { ScrollArea, ScrollBar } from "@/_components/ui/scroll-area";
-import { formatCurrency } from "@/_utils/formatCurrency";
+import { formatCurrency } from "@/_helpers/formatCurrency";
 
 import { CartContext } from "../_contexts/cart";
 import CartSheet from "./cart-sheet";

@@ -7,11 +7,10 @@ import { useContext, useState } from "react";
 
 import { Button } from "@/_components/ui/button";
 import { ScrollArea } from "@/_components/ui/scroll-area";
-import { formatCurrency } from "@/_utils/formatCurrency";
+import { formatCurrency } from "@/_helpers/formatCurrency";
 
 import CartSheet from "../../_components/cart-sheet";
 import { CartContext } from "../../_contexts/cart";
-
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
@@ -46,9 +45,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const handleAddToCartClick = () => {
     addProduct({
       ...product,
-      quantity
-    })
-    
+      quantity,
+    });
+
     toggleCart();
   };
 
