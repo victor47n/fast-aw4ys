@@ -1,5 +1,8 @@
+"use client";
+
 import { type Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/_components/ui/button";
 
@@ -24,9 +27,17 @@ interface OrderListProps {
 }
 
 export default function OrderList({ orders }: OrderListProps) {
+  const router = useRouter();
+  const handleBackClick = () => router.back();
+
   return (
     <div className="space-y-6 p-6">
-      <Button size="icon" variant="secondary" className="rounded-full">
+      <Button
+        size="icon"
+        variant="secondary"
+        className="rounded-full"
+        onClick={handleBackClick}
+      >
         <ChevronLeftIcon />
       </Button>
 

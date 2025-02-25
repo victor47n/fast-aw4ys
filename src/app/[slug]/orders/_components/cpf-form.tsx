@@ -26,7 +26,7 @@ import {
 } from "@/_components/ui/form";
 import { Input } from "@/_components/ui/input";
 
-import { isValidCpf } from "../../menu/_helpers/cpf";
+import { isValidCpf, removeCpfPunctuation } from "../../menu/_helpers/cpf";
 
 const formSchema = z.object({
   cpf: z
@@ -47,7 +47,7 @@ export default function CpfForm() {
   const pathName = usePathname();
 
   const onSubmit = (data: FormSchema) => {
-    router.push(`${pathName}?cpf=${data.cpf}`);
+    router.replace(`${pathName}?cpf=${removeCpfPunctuation(data.cpf)}`);
   };
 
   const handleCancel = () => {
